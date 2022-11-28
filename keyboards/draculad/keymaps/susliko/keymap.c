@@ -39,29 +39,29 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] =  LAYOUT(
         KC_Q,         KC_W,    KC_E,    KC_R,    KC_T,                                 KC_Y,            KC_U,             KC_I,    KC_O,    KC_P,
-        LSFT_T(KC_A), LGUI_T(KC_S), LALT_T(KC_D), LCTL_T(KC_F), KC_G,                   KC_H, RCTL_T(KC_J), RALT_T(KC_K), RGUI_T(KC_L), RSFT_T(KC_SCLN),
+        LSFT_T(KC_A), LALT_T(KC_S), LGUI_T(KC_D), LCTL_T(KC_F), KC_G,                   KC_H, RCTL_T(KC_J), RGUI_T(KC_K), RALT_T(KC_L), RSFT_T(KC_SCLN),
         KC_Z, KC_X,    KC_C,    KC_V,    KC_B,                                         KC_N, KC_M, KC_COMM, KC_DOT,  KC_SLSH,
                                                  KC_MUTE,                              TG(_ADJ),
-                                    MO(_MUS), LT(_SYMB, KC_ESC), LT(_NUM,KC_ENT),      KC_NO,   KC_SPC, KC_BSPC
+                                    MO(_MUS), LT(_SYMB, KC_ESC), LT(_NUM,KC_BSPC),     XXXXXXX,   KC_SPC, KC_ENT
     ),
     [_NUM] = LAYOUT(
         KC_F1,  KC_F2, KC_F3, KC_F4, KC_F5,                               KC_F6, KC_F7, KC_F8,   KC_F9, KC_F10,
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-        KC_F11, KC_F12, XXXXXXX, XXXXXXX, XXXXXXX,                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                            XXXXXXX,                      KC_NO,
-                                XXXXXXX, XXXXXXX, XXXXXXX,             KC_NO,    XXXXXXX, XXXXXXX
+        KC_F11, KC_F12, KC_DQT, KC_ESC, KC_UNDS,                          KC_PLUS, KC_MINS, KC_ASTR, KC_SLSH, KC_EQL,
+                                            XXXXXXX,                      XXXXXXX,
+                                XXXXXXX, XXXXXXX, _______,             XXXXXXX, KC_TAB, XXXXXXX
     ),
     [_SYMB] = LAYOUT(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,                        XXXXXXX, XXXXXXX, XXXXXXX, KC_EQL,  KC_MINS,
-        XXXXXXX, KC_F5,   KC_F6,   KC_F7,   KC_F8,                        KC_LBRC, KC_RBRC, XXXXXXX, KC_GRV,  KC_BSLS,
-        KC_LSFT, KC_F9,   KC_F10,  KC_F11,  KC_F12,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_RSFT,
-                                            XXXXXXX,                      KC_NO,
-                                   KC_LALT, XXXXXXX, XXXXXXX,    XXXXXXX, KC_NO,   _______
+        KC_EXLM,  KC_AT, KC_HASH, KC_DLR, KC_PERC,                KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL,
+        _______, KC_SLSH, KC_LCBR, KC_LPRN, KC_LBRC,                KC_RBRC, KC_RPRN, KC_RCBR, KC_BSLS, KC_PIPE,
+        XXXXXXX, XXXXXXX, XXXXXXX, KC_UNDS, KC_ESC,               KC_QUOT,KC_EQL,KC_PLUS,XXXXXXX,XXXXXXX,
+                                            XXXXXXX,                      XXXXXXX,
+                                   XXXXXXX, _______, XXXXXXX,    XXXXXXX, KC_TAB,   _______
     ),
     [_MUS] = LAYOUT(
-        KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        KC_LALT, KC_BTN3, KC_BTN2, KC_BTN1, BALL_SCR,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      BALL_SCR, KC_BTN1, KC_BTN2, KC_BTN3, KC_PSCR,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                             XXXXXXX,                       XXXXXXX,
                                    XXXXXXX, XXXXXXX,  XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX
     ),
@@ -324,7 +324,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             clockwise?tap_code(KC_WH_U):tap_code(KC_WH_D);
             break;
         default:
-            clockwise?tap_code(KC_PGUP):tap_code(KC_PGDN);
+            clockwise?tap_code(KC_PGDN):tap_code(KC_PGUP);
             break;
       }
     }
